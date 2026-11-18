@@ -68,6 +68,17 @@ usa <- fifty_states |>
 
 ![](img/jq.png)
 
+???
+
+As part of the Bipartisan Safer Communities Act, the Biden administration moved to "close the gun show loophole" with a rule change broadening the definition of individuals
+engaged in the business of selling firearms. This would potentially increase the proportion of 
+sellers required to obtain Federal Firearms Licenses and conduct background checks. The policy was announced in April 2024 and took effect in May.
+
+In a paper that came out last week, we found this policy had no effect in increasing either FFLS
+or background checks. But, it is possible that despite this, it may have caused some 
+private sellers to stop selling guns or shift to selling through FFL-holding businesses.
+In this paper, we look to see whether this happened on online gun markets.
+
 ## {}
 
 ```{r}
@@ -86,10 +97,15 @@ ggplot(usa) +
         text = element_text(color = "#333d4d"),)
 ```
 
+
+???
+
+After the policy change was announced, four states sued the federal government and obtained an injunction blocking the policy from taking effect. This means there are three sets of states to compare: (a) those affected by the law but who had pre-existing requirements for background checks for gun sales, (b) those affected but without existing background check rules, and (c) those not affected due to the injunction. Today I will compare the unaffected injunction states to the affected ones without existing background check laws.
+
 ## Craigslist for guns
 
 ![](img/armslist-main.png)
-
+To look at changes in gun markets, we scraped data from Armslist, essentially a Craigslist for guns. Sellers on Armslist are split into private sellers and premium sellers, where premium sellers must have an FFL. Our expectation is that if the policy had an impact on markets, it would cause a shift from private to premium sellers.
 
 ## {}
 
@@ -151,6 +167,9 @@ png::writePNG(plot_pdf, str_replace(filename, "\\.pdf", ".png" ), dpi = 1200)
 ```
 
 ![](img/event_study_plot.png)
+???
+
+We examined this with a two-way fixed effects event study design. Estimates are month-specific effects of the policy change relative to March 2025 before the policy was announced. What we see here is an apparent massive decrease in premium, rather than private, listing in treated states in just the month of announcement and implementation.
 
 ## {}
 
@@ -197,12 +216,17 @@ png::writePNG(plot_pdf, str_replace(filename, "\\.pdf", ".png" ), dpi = 1200)
 
 ```
 ![](img/state_plot.png)
+???
+
+It turns out what this is actually due not to a decrease in premium listings in treated states, but rather a massive spike in listings in the untreated injunction states. That is, it seems the policy triggered a flurry of new sales mainly in Texas---in line with surges in gun sales commonly seen when there are fears gun control legislation will be passed. But it quickly levels out afterward.
 
 ## tl;dr {.dark-slide}
 
 &nbsp;
 
 "Closing the gun show loophole" had **no significant impact on online private sales** but likely produced a brief but massive increase followed by a rebound in listings from dealers in **unaffected states** (mainly Texas)
+
+
 
 ## Thank you {background-image="img/paisley.png" background-position="bottom" background-size="contain"}
 
